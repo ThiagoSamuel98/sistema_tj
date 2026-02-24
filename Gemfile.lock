@@ -135,7 +135,9 @@ GEM
       net-smtp
     marcel (1.1.0)
     mini_mime (1.1.5)
-    minitest (5.27.0)
+    minitest (6.0.2)
+      drb (~> 2.0)
+      prism (~> 1.5)
     msgpack (1.8.0)
     net-imap (0.6.3)
       date
@@ -321,7 +323,7 @@ DEPENDENCIES
   brakeman
   debug
   kamal
-  minitest (~> 5.0)
+  minitest (~> 6.0)
   puma (>= 5.0)
   rails (~> 8.0.2, >= 8.0.2.1)
   rubocop-rails-omakase

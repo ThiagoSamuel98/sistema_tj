@@ -46,5 +46,5 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
   # <<< ADICIONADA  LINHA ABAIXO >>>
-  gem "minitest", "~> 5.0"
+  gem "minitest", "~> 6.0"
 end
