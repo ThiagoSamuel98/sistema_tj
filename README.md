@@ -2,7 +2,7 @@
 
 > **Status:** 🚀 Versão 2.0 (Clean Architecture)  
 > **Desenvolvedor:** Thiago Samuel  
-> **Instituição:** Tribunal de Justiça (TJPI)
+> **Instituição:** Tribunal de Justiça (TJ)
 
 Este repositório contém uma aplicação **Ruby on Rails 8** de alta performance, desenvolvida para o gerenciamento eletrônico de documentos jurídicos. O projeto foca em três pilares: **Simplicidade**, **Segurança** e **Inteligência**.
 
