@@ -4,6 +4,13 @@ class DocumentosController < ApplicationController
   # GET /documentos or /documentos.json
   def index
     @documentos = Documento.all
+
+    # Lógica de Busca: Se houver um parâmetro 'query', filtra o banco
+    if params[:query].present?
+    @documentos = @documentos.where("titulo LIKE ? OR categoria LIKE ?", 
+                                   "%#{params[:query]}%", 
+                                   "%#{params[:query]}%")
+    end
   end
 
   # GET /documentos/1 or /documentos/1.json
@@ -65,6 +72,6 @@ class DocumentosController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def documento_params
-      params.expect(documento: [ :titulo ])
+      params.expect(documento: [ :titulo, :categoria ])
     end
 end

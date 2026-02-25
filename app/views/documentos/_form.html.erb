@@ -1,9 +1,8 @@
-<%= form_with(model: documento) do |form| %>
+<%= form_with(model: documento, class: "contents") do |form| %>
   <% if documento.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(documento.errors.count, "error") %> prohibited this documento from being saved:</h2>
-
-      <ul>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-4 py-3 font-medium rounded-lg mt-3 mb-6 border border-red-200">
+      <h2 class="text-sm font-bold uppercase"><%= pluralize(documento.errors.count, "erro") %> impediram a gravação:</h2>
+      <ul class="list-disc ml-5 text-sm">
         <% documento.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
@@ -11,12 +10,25 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :titulo, style: "display: block" %>
-    <%= form.text_field :titulo %>
-  </div>
+  <div class="bg-white p-8 rounded-xl shadow-lg border border-slate-100 max-w-2xl mx-auto mt-10">
+    <div class="space-y-6">
+      <div>
+        <%= form.label :titulo, "Título do Documento", class: "block text-sm font-bold text-slate-700 mb-1" %>
+        <%= form.text_field :titulo, class: "block w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition shadow-sm", placeholder: "Ex: Ofício nº 123/2026" %>
+      </div>
 
-  <div>
-    <%= form.submit %>
+      <div>
+        <%= form.label :categoria, "Categoria Jurídica", class: "block text-sm font-bold text-slate-700 mb-1" %>
+        <%= form.select :categoria, 
+            ["Sentença", "Despacho", "Petição", "Ofício", "Portaria"], 
+            { include_blank: "Selecione uma categoria..." }, 
+            class: "block w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-red-500 focus:border-red-500 transition shadow-sm bg-white" %>
+      </div>
+
+      <div class="flex items-center justify-end gap-4 pt-4 border-t border-slate-100">
+        <%= link_to "Cancelar", documentos_path, class: "text-slate-500 hover:text-slate-700 font-medium" %>
+        <%= form.submit "Salvar Documento", class: "rounded-lg py-3 px-8 bg-red-700 text-white font-bold hover:bg-red-800 shadow-md transform hover:-translate-y-0.5 transition cursor-pointer" %>
+      </div>
+    </div>
   </div>
 <% end %>

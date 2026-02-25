@@ -1,16 +1,84 @@
-<p style="color: green"><%= notice %></p>
+<div class="space-y-8">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+      <p class="text-sm font-medium text-slate-500">Total de Documentos</p>
+      <p class="text-3xl font-bold text-red-600"><%= @documentos.count %></p>
+    </div>
+    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+      <p class="text-sm font-medium text-slate-500">Última Atualização</p>
+      <p class="text-lg font-semibold text-slate-700"><%= Time.now.strftime("%d/%m/%Y") %></p>
+    </div>
+    <div class="flex items-center justify-end">
+      <%= link_to new_documento_path, class: "group flex items-center gap-2 bg-red-900 hover:bg-red-950 text-white px-6 py-3 rounded-xl font-bold shadow-lg shadow-red-900/20 transition-all active:scale-95" do %>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:rotate-90 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+        </svg>
+        Novo Documento
+      <% end %>
+    </div>
+  </div>
 
-<% content_for :title, "Documentos" %>
+  <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-2 focus-within:ring-2 focus-within:ring-red-900 transition-all">
+    <%= form_with url: documentos_path, method: :get, class: "flex items-center" do |f| %>
+      <div class="pl-4 text-slate-400">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+      </div>
+      <%= f.text_field :query, value: params[:query], placeholder: "Pesquisar por número do processo, título ou categoria...", 
+          class: "w-full border-none focus:ring-0 text-slate-700 placeholder-slate-400 py-3 px-4 bg-transparent" %>
+      <%= f.submit "Buscar", class: "bg-slate-100 hover:bg-slate-200 text-slate-700 px-6 py-2 rounded-lg font-semibold mr-1 transition-colors cursor-pointer" %>
+    <% end %>
+  </div>
 
-<h1>Documentos</h1>
-
-<div id="documentos">
-  <% @documentos.each do |documento| %>
-    <%= render documento %>
-    <p>
-      <%= link_to "Show this documento", documento %>
-    </p>
-  <% end %>
+  <div class="bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-200 overflow-hidden">
+    <table class="w-full text-left border-collapse">
+      <thead>
+        <tr class="bg-slate-50/50 border-b border-slate-200">
+          <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase">Documento</th>
+          <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase text-center">Categoria</th>
+          <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase text-right">Ações</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-slate-100">
+        <% @documentos.each do |documento| %>
+          <tr class="group hover:bg-slate-50/80 transition-all">
+            <td class="px-6 py-5">
+              <div class="flex items-center gap-3">
+                <div class="h-10 w-10 bg-red-50 text-red-600 rounded-lg flex items-center justify-center font-bold">
+                  <div class="h-10 w-10 bg-red-50 text-red-600 rounded-lg flex items-center justify-center font-bold">
+                    <%= (documento.titulo.presence || "D")[0].upcase %>
+                  </div>
+                <div>
+                  <div class="text-sm font-bold text-slate-800"><%= documento.titulo %></div>
+                  <div class="text-xs text-slate-400">Criado em <%= documento.created_at.strftime("%d %b, %Y") %></div>
+                </div>
+              </div>
+            </td>
+            <td class="px-6 py-5 text-center">
+              <% badge_color = case documento.categoria
+                 when "Sentença" then "bg-emerald-100 text-emerald-700 border-emerald-200"
+                 when "Petição" then "bg-amber-100 text-amber-700 border-amber-200"
+                 else "bg-red-50 text-red-900 border-red-100"
+                 end %>
+              <span class="px-3 py-1 rounded-full text-[10px] font-black uppercase border <%= badge_color %>">
+                <%= documento.categoria.presence || "Geral" %>
+              </span>
+            </td>
+            <td class="px-6 py-5 text-right space-x-2">
+              <%= link_to "Visualizar", documento, class: "text-xs font-bold text-red-900 hover:bg-red-100 px-3 py-2 rounded-md transition" %>
+              <%= link_to "Editar", edit_documento_path(documento), class: "text-xs font-bold text-slate-400 hover:text-slate-600 transition" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    
+    <% if @documentos.empty? %>
+      <div class="py-20 text-center">
+        <div class="text-5xl mb-4">📂</div>
+        <p class="text-slate-400 font-medium">Nenhum documento encontrado no acervo.</p>
+      </div>
+    <% end %>
+  </div>
 </div>
-
-<%= link_to "New documento", new_documento_path %>
