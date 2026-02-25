@@ -38,3 +38,4 @@ Implementação de validações em nível de Model e limpeza de parâmetros em n
 ### Pré-requisitos
 - Ruby 3.4.4
 - SQLite 3
+- Rails 8.0.4
