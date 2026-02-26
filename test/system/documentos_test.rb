@@ -7,35 +7,40 @@ class DocumentosTest < ApplicationSystemTestCase
 
   test "visiting the index" do
     visit documentos_url
-    assert_selector "h1", text: "Documentos"
+    # Trocamos 'h1' por um texto que realmente existe na sua nova dashboard
+    assert_selector "p", text: "Total de Documentos"
   end
 
   test "should create documento" do
     visit documentos_url
-    click_on "New documento"
+    # Mudamos para o novo nome do botão
+    click_on "Novo Documento"
 
-    fill_in "Titulo", with: @documento.titulo
-    click_on "Create Documento"
+    fill_in "Título", with: "Ofício de Teste"
+    select "Sentença", from: "Categoria"
+    click_on "Salvar Documento"
 
-    assert_text "Documento was successfully created"
-    click_on "Back"
+    assert_text "Documento criado com sucesso"
+    click_on "Voltar para Documentos"
   end
 
   test "should update Documento" do
     visit documento_url(@documento)
-    click_on "Edit this documento", match: :first
+    # Mudamos para o nome que você colocou no botão de editar
+    click_on "Editar Documento"
 
-    fill_in "Titulo", with: @documento.titulo
-    click_on "Update Documento"
+    fill_in "Título", with: "Título Atualizado"
+    click_on "Salvar Documento"
 
-    assert_text "Documento was successfully updated"
-    click_on "Back"
+    assert_text "Documento atualizado com sucesso"
+    click_on "Voltar para Documentos"
   end
 
   test "should destroy Documento" do
     visit documento_url(@documento)
-    click_on "Destroy this documento", match: :first
+    # Mudamos para o texto que definimos para a exclusão
+    click_on "Excluir Permanentemente"
 
-    assert_text "Documento was successfully destroyed"
+    assert_text "Documento excluído com sucesso"
   end
 end

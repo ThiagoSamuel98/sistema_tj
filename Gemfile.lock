@@ -234,7 +234,6 @@ GEM
       railties (= 8.0.4)
     rails-dom-testing (2.3.0)
       activesupport (>= 5.0.0)
-      minitest
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.7.0)
       loofah (~> 2.25)
