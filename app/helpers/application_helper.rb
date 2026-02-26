@@ -1,9 +1,9 @@
 module ApplicationHelper
   def current_user_name
     if controller.respond_to?(:current_user)
-      controller.current_user&.name&.capitalize || 'Convidado'
+      controller.current_user&.name&.capitalize || "Convidado"
     else
-      'Convidado'
+      "Convidado"
     end
   end
 end

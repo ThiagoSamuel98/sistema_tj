@@ -1,14 +1,14 @@
 class DocumentosController < ApplicationController
   before_action :set_documento, only: %i[ show edit update destroy ]
 
-  # GET /documentos or /documentos.json
+# GET /documentos or /documentos.json
 def index
   @documentos = Documento.all
 
   # Lógica de Busca: Se houver um parâmetro 'query', filtra o banco
   if params[:query].present?
-    @documentos = @documentos.where("titulo LIKE ? OR categoria LIKE ?", 
-                                   "%#{params[:query]}%", 
+    @documentos = @documentos.where("titulo LIKE ? OR categoria LIKE ?",
+                                   "%#{params[:query]}%",
                                    "%#{params[:query]}%")
   end
 end
@@ -68,7 +68,7 @@ end
   def exportar_pdf
     @documento = Documento.find(params[:id])
     pdf = PdfService.gerar_pdf(@documento)
-    send_data(pdf, filename: "documento_#{@documento.id}.pdf", type: 'application/pdf', disposition: 'attachment')
+    send_data(pdf, filename: "documento_#{@documento.id}.pdf", type: "application/pdf", disposition: "attachment")
   end
     # Use callbacks to share common setup or constraints between actions.
     def set_documento

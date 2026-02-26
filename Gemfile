@@ -48,11 +48,12 @@ group :development, :test do
   gem "brakeman", require: false
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
-  gem 'wicked_pdf'
-  gem 'wkhtmltopdf-binary'
+  gem "wicked_pdf"
+  gem "wkhtmltopdf-binary"
 
-  gem 'rubocop', require: false
-  gem 'rubocop-rails', require: false
+  gem "rubocop", require: false
+  gem "rubocop-rails", require: false
+  gem "rubocop-rails-omakase", require: false      # <--- nova linha
 end
 
 group :development do
@@ -64,7 +65,7 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
-  gem 'minitest', '~> 5.27'
+  gem "minitest", "~> 5.27"
 end
 
 gem "tailwindcss-rails", "~> 4.4"
