@@ -15,6 +15,11 @@ end
 
   # GET /documentos/1 or /documentos/1.json
   def show
+    @documento = Documento.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.pdf { exportar_pdf } # ou render pdf direto
+    end
   end
 
   # GET /documentos/new
@@ -29,15 +34,10 @@ end
   # POST /documentos or /documentos.json
   def create
     @documento = Documento.new(documento_params)
-
-    respond_to do |format|
-      if @documento.save
-        format.html { redirect_to @documento, notice: "Documento was successfully created." }
-        format.json { render :show, status: :created, location: @documento }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @documento.errors, status: :unprocessable_entity }
-      end
+    if @documento.save
+      redirect_to @documento, notice: "Documento criado."
+    else
+      render :new
     end
   end
 
@@ -65,6 +65,11 @@ end
   end
 
   private
+  def exportar_pdf
+    @documento = Documento.find(params[:id])
+    pdf = PdfService.gerar_pdf(@documento)
+    send_data(pdf, filename: "documento_#{@documento.id}.pdf", type: 'application/pdf', disposition: 'attachment')
+  end
     # Use callbacks to share common setup or constraints between actions.
     def set_documento
       @documento = Documento.find(params.expect(:id))
