@@ -1,10 +1,44 @@
-<p style="color: green"><%= notice %></p>
+<%# Mensagem de sucesso estilizada %>
+<% if notice.present? %>
+  <div class="mb-6 p-4 bg-emerald-50 border-l-4 border-emerald-500 text-emerald-700 font-medium rounded-r-lg shadow-sm">
+    <%= notice %>
+  </div>
+<% end %>
 
-<%= render @documento %>
+<div class="bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-200 overflow-hidden p-8">
+  <%# Renderiza os dados do documento %>
+  <div class="prose prose-slate max-w-none">
+    <%= render @documento %>
+  </div>
 
-<div>
-  <%= link_to "Edit this documento", edit_documento_path(@documento) %> |
-  <%= link_to "Back to documentos", documentos_path %>
+  <hr class="my-8 border-slate-100">
 
-  <%= button_to "Destroy this documento", @documento, method: :delete %>
+  <%# Área de Botões (Ações) %>
+  <div class="flex flex-wrap items-center gap-4">
+    
+    <%# Botão Editar %>
+    <%= link_to edit_documento_path(@documento), class: "flex items-center gap-2 bg-slate-800 hover:bg-slate-900 text-white px-6 py-2.5 rounded-xl font-bold transition-all active:scale-95 shadow-lg shadow-slate-200" do %>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+      </svg>
+      Editar Documento
+    <% end %>
+
+    <%# Botão Voltar %>
+    <%= link_to documentos_path, class: "flex items-center gap-2 text-slate-500 hover:text-red-900 font-bold px-4 py-2.5 transition-colors" do %>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+      Voltar para Documentos
+    <% end %>
+
+    <div class="flex-grow"></div> <%# Espaçador para jogar o excluir para a direita %>
+
+    <%# Botão Excluir (Cuidado!) %>
+    <%= button_to @documento, method: :delete, 
+        form: { data: { confirm: "Tem certeza que deseja excluir este documento?" } },
+        class: "text-xs font-bold text-red-400 hover:text-red-700 transition-colors" do %>
+      Excluir Permanentemente
+    <% end %>
+  </div>
 </div>

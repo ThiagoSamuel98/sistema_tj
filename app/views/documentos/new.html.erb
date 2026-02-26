@@ -1,11 +1,31 @@
-<% content_for :title, "New documento" %>
+<div class="max-w-2xl mx-auto py-10 px-4">
+  <%# Cabeçalho %>
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-slate-800">Novo Documento</h1>
+    <p class="text-slate-500">Sistema de Gestão Documental - TJ Piauí</p>
+  </div>
 
-<h1>New documento</h1>
+  <%# O Card que já está bonito (seu formulário) %>
+  <%= render "form", documento: @documento %>
 
-<%= render "form", documento: @documento %>
+    <% if @documento.persisted? %>
+    <div class="mt-6 flex gap-3">
+      <%= link_to "📥 Baixar PDF", documento_path(@documento, format: :pdf), 
+          class: "inline-flex items-center gap-2 px-4 py-2 bg-red-900 text-white rounded-lg hover:bg-red-800 font-bold transition-all" %>
+      
+      <%= link_to "🖨️ Imprimir", "#", 
+          onclick: "window.print()", 
+          class: "inline-flex items-center gap-2 px-4 py-2 bg-slate-600 text-white rounded-lg hover:bg-slate-700 font-bold transition-all" %>
+    </div>
+  <% end %>
 
-<br>
-
-<div>
-  <%= link_to "Back to documentos", documentos_path %>
+  <%# Rodapé com botão de voltar %>
+  <div class="mt-8 flex items-center border-t border-slate-100 pt-6">
+    <%= link_to documentos_path, class: "inline-flex items-center gap-2 text-slate-500 hover:text-red-900 font-bold transition-all group" do %>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transform group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+      Voltar para Documentos
+    <% end %>
+  </div>
 </div>
