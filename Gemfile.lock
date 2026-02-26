@@ -68,7 +68,7 @@ GEM
       drb
       i18n (>= 1.6, < 2)
       logger (>= 1.4.2)
-      minitest (>= 5.1)
+      minitest (>= 5.27)
       securerandom (>= 0.3)
       tzinfo (~> 2.0, >= 2.0.5)
       uri (>= 0.13.1)
@@ -387,7 +387,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   kamal
-  minitest (< 6)
+  minitest (~> 5.27)
   propshaft
   puma (>= 5.0)
   rails (~> 8.0.4)
