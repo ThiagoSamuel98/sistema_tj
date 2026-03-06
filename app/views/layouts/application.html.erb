@@ -1,32 +1,141 @@
 <!DOCTYPE html>
-<html class="h-full bg-slate-50">
+<html lang="pt-BR">
   <head>
-    <title>SGP - Sistema de Gestão de Processos</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) + " | " : "" %>Sistema TJ - Digital</title>
+    
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%# Chamamos o Tailwind e as Fontes apenas UMA vez cada %>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Chart.js para Gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    
+    <!-- Tailwind CSS (existente) -->
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+    
+    <!-- Application CSS -->
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    
+    <!-- Custom CSS para Dashboard -->
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f8f9fc;
+      }
+      
+      #wrapper {
+        display: flex;
+        width: 100%;
+      }
+      
+      #sidebar-wrapper {
+        min-height: 100vh;
+        transition: margin 0.25s ease-out;
+      }
+      
+      #page-content-wrapper {
+        min-width: 0;
+        width: 100%;
+      }
+      
+      .sidebar-heading {
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+      
+      .list-group-item-dark {
+        background-color: transparent;
+        border: none;
+        color: rgba(255, 255, 255, 0.8);
+      }
+      
+      .list-group-item-dark:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: #fff;
+      }
+      
+      .list-group-item-dark.active {
+        background-color: #4e73df;
+        color: #fff;
+        font-weight: bold;
+      }
+      
+      .card {
+        border: none;
+        border-radius: 0.5rem;
+      }
+      
+      .border-start-primary {
+        border-left: 4px solid #4e73df !important;
+      }
+      
+      .border-start-success {
+        border-left: 4px solid #1cc88a !important;
+      }
+      
+      .border-start-info {
+        border-left: 4px solid #36b9cc !important;
+      }
+      
+      .border-start-warning {
+        border-left: 4px solid #f6c23e !important;
+      }
+      
+      .table-hover tbody tr:hover {
+        background-color: rgba(78, 115, 223, 0.05);
+      }
+    </style>
+    
+    <%= yield :head %>
   </head>
 
-  <body class="h-full antialiased text-slate-900">
-    <nav class="bg-red-900 shadow-lg border-b border-red-800">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-          <div class="flex items-center">
-            <span class="text-white font-bold text-xl tracking-tight">⚖️ TJPI <span class="font-light text-red-200">| Digital</span></span>
-          </div>
-          <div class="flex items-center space-x-4">
-            <span class="text-red-200 text-sm">Olá, <%= current_user_name %></span>
-          </div>
+  <body>
+    <div id="wrapper">
+      <!-- Sidebar -->
+      <%= render 'shared/sidebar' %>
+      
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <!-- Navbar -->
+        <%= render 'shared/navbar' %>
+        
+        <!-- Main Content -->
+        <div class="container-fluid px-4 py-4">
+          <!-- Flash Messages -->
+          <%= render 'shared/flashes' %>
+          
+          <!-- Page Content -->
+          <%= yield %>
         </div>
       </div>
-    </nav>
+    </div>
 
-    <main class="max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
-      <%= yield %>
-    </main>
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Application JS -->
+    <%= javascript_importmap_tags %>
+    
+    <!-- Script para toggle sidebar -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebarWrapper = document.getElementById('sidebar-wrapper');
+        
+        if (sidebarToggle && sidebarWrapper) {
+          sidebarToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            const currentMargin = sidebarWrapper.style.marginLeft;
+            sidebarWrapper.style.marginLeft = currentMargin === '-250px' ? '0' : '-250px';
+          });
+        }
+      });
+    </script>
   </body>
 </html>

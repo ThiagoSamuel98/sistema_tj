@@ -1,0 +1,81 @@
+<% provide :title, "Metas" %>
+
+<div class="container-fluid">
+  <!-- Header -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <h1 class="h3 mb-2 text-gray-800">
+            <i class="fas fa-bullseye me-2"></i>Metas
+          </h1>
+          <p class="text-muted">Metas definidas para os indicadores</p>
+        </div>
+        <%= link_to "Nova Meta", new_meta_path, class: "btn btn-success" %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabela -->
+  <div class="card shadow">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead class="table-light">
+            <tr>
+              <th>Ano</th>
+              <th>Indicador</th>
+              <th>Tipo</th>
+              <th>Descrição da Meta</th>
+              <th>Tipo Objetivo</th>
+              <th>Formato</th>
+              <th>Resultado</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @metas.each do |meta| %>
+              <tr>
+                <td><%= meta.ano %></td>
+                <td>
+                  <div class="fw-bold"><%= truncate(meta.indicador.indicador, length: 35) %></div>
+                </td>
+                <td>
+                  <span class="badge <%= meta.indicador.tipo == 'nacional' ? 'bg-info' : 'bg-warning' %>">
+                    <%= meta.indicador.tipo.titleize %>
+                  </span>
+                </td>
+                <td><%= truncate(meta.descricao_da_meta, length: 40) || 'N/A' %></td>
+                <td><%= meta.tipo_objetivo || '-' %></td>
+                <td>
+                  <% if meta.formato_objetivo.present? %>
+                    <span class="badge bg-secondary"><%= meta.formato_objetivo %></span>
+                  <% else %>
+                    <span class="text-muted">-</span>
+                  <% end %>
+                </td>
+                <td><%= meta.resultado || 'N/A' %></td>
+                <td>
+                  <div class="btn-group btn-group-sm" role="group">
+                    <%= link_to "Editar", edit_meta_path(meta), class: "btn btn-outline-secondary" %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <!-- Paginação -->
+    <% if @metas.total_pages > 1 %>
+      <div class="card-footer bg-white">
+        <nav aria-label="Page navigation">
+          <ul class="pagination justify-content-center mb-0">
+            <%= paginate @metas %>
+          </ul>
+        </nav>
+      </div>
+    <% end %>
+  </div>
+</div>

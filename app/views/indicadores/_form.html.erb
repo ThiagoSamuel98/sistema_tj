@@ -1,0 +1,116 @@
+<% provide :title, (@indicador.new_record? ? "Novo Indicador" : "Editar Indicador") %>
+
+<div class="container-fluid">
+  <div class="row mb-4">
+    <div class="col-12">
+      <h1 class="h3 mb-3 text-gray-800">
+        <i class="fas fa-<%= @indicador.new_record? ? 'plus-circle' : 'edit' %> me-2"></i>
+        <%= @indicador.new_record? ? "Novo Indicador" : "Editar Indicador" %>
+      </h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="card shadow">
+        <div class="card-body">
+          <%= form_with model: @indicador, local: true do |f| %>
+            
+            <!-- Campos Principais -->
+            <div class="row mb-3">
+              <div class="col-12">
+                <%= f.label :indicador, class: "form-label fw-bold" %>
+                <%= f.text_field :indicador, class: "form-control", placeholder: "Nome do indicador" %>
+                <% if @indicador.errors[:indicador].any? %>
+                  <div class="text-danger small mt-1"><%= @indicador.errors[:indicador].first %></div>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <%= f.label :tipo, class: "form-label fw-bold" %>
+                <%= f.select :tipo, 
+                    [['Nacional', 'nacional'], ['Institucional', 'institucional']], 
+                    { prompt: "Selecione o tipo" }, 
+                    class: "form-select" %>
+                <% if @indicador.errors[:tipo].any? %>
+                  <div class="text-danger small mt-1"><%= @indicador.errors[:tipo].first %></div>
+                <% end %>
+              </div>
+              
+              <div class="col-md-6">
+                <%= f.label :periodicidade, class: "form-label fw-bold" %>
+                <%= f.select :periodicidade,
+                    [['Anual', 'Anual'], ['Semestral', 'Semestral'], ['Mensal', 'Mensal'], ['Trimestral', 'Trimestral']],
+                    { prompt: "Selecione a periodicidade" },
+                    class: "form-select" %>
+              </div>
+            </div>
+
+            <!-- Campo de Texto Longo -->
+            <div class="mb-3">
+              <%= f.label :o_que_se_mede, class: "form-label fw-bold" %>
+              <%= f.text_area :o_que_se_mede, class: "form-control", rows: 4, placeholder: "Descrição do que é medido" %>
+              <% if @indicador.errors[:o_que_se_mede].any? %>
+                <div class="text-danger small mt-1"><%= @indicador.errors[:o_que_se_mede].first %></div>
+              <% end %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :onde_medir, class: "form-label fw-bold" %>
+              <%= f.text_area :onde_medir, class: "form-control", rows: 3, placeholder: "Onde medir" %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :como_medir, class: "form-label fw-bold" %>
+              <%= f.text_area :como_medir, class: "form-control", rows: 4, placeholder: "Como medir (fórmula, método)" %>
+            </div>
+
+            <div class="mb-4">
+              <%= f.label :tedencia, class: "form-label fw-bold" %>
+              <%= f.text_field :tedencia, class: "form-control", placeholder: "Quanto maior, melhor / Quanto menor, melhor" %>
+            </div>
+
+            <!-- Botões de Ação -->
+            <div class="d-flex justify-content-between">
+              <%= link_to "Cancelar", :back, class: "btn btn-secondary" %>
+              <div>
+                <%= f.submit "Salvar", class: "btn btn-primary" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card de Ajuda -->
+    <div class="col-lg-4">
+      <div class="card shadow">
+        <div class="card-header bg-white">
+          <h6 class="fw-bold"><i class="fas fa-lightbulb me-2"></i>Dicas</h6>
+        </div>
+        <div class="card-body">
+          <ul class="list-unstyled mb-0">
+            <li class="mb-3">
+              <i class="fas fa-check-circle text-success me-2"></i>
+              <strong>Nome:</strong> Seja claro e objetivo no nome do indicador
+            </li>
+            <li class="mb-3">
+              <i class="fas fa-check-circle text-success me-2"></i>
+              <strong>Tipo:</strong> Nacional (CNJ) ou Institucional (interno)
+            </li>
+            <li class="mb-3">
+              <i class="fas fa-check-circle text-success me-2"></i>
+              <strong>Periodicidade:</strong> Frequência de coleta dos dados
+            </li>
+            <li class="mb-3">
+              <i class="fas fa-check-circle text-success me-2"></i>
+              <strong>Tendência:</strong> Indica se valor alto ou baixo é melhor
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,106 @@
+<% provide :title, (@serie_historica.new_record? ? "Novo Registro" : "Editar Registro") %>
+
+<div class="container-fluid">
+  <div class="row mb-4">
+    <div class="col-12">
+      <h1 class="h3 mb-3 text-gray-800">
+        <i class="fas fa-<%= @serie_historica.new_record? ? 'plus-circle' : 'edit' %> me-2"></i>
+        <%= @serie_historica.new_record? ? "Novo Registro de Série Histórica" : "Editar Registro" %>
+      </h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="card shadow">
+        <div class="card-body">
+          <%= form_with model: @serie_historica, local: true do |f| %>
+            
+            <% if @indicador %>
+              <%= f.hidden_field :indicador_id %>
+            <% else %>
+              <div class="mb-3">
+                <%= f.label :indicador_id, "Indicador", class: "form-label fw-bold" %>
+                <%= f.collection_select :indicador_id, Indicador.order(:indicador), :id, :indicador, 
+                    { prompt: "Selecione o indicador" }, 
+                    class: "form-select" %>
+                <% if @serie_historica.errors[:indicador_id].any? %>
+                  <div class="text-danger small mt-1"><%= @serie_historica.errors[:indicador_id].first %></div>
+                <% end %>
+              </div>
+            <% end %>
+
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <%= f.label :ano, class: "form-label fw-bold" %>
+                <%= f.number_field :ano, class: "form-control", min: 2015, max: Date.today.year %>
+                <% if @serie_historica.errors[:ano].any? %>
+                  <div class="text-danger small mt-1"><%= @serie_historica.errors[:ano].first %></div>
+                <% end %>
+              </div>
+
+              <div class="col-md-6">
+                <%= f.label :status, class: "form-label fw-bold" %>
+                <%= f.select :status,
+                    [['Disponível', 'disponivel'], ['Indisponível', 'indisponivel']],
+                    { prompt: "Selecione o status" },
+                    class: "form-select" %>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :Valor, "Valor", class: "form-label fw-bold" %>
+              <%= f.text_area :Valor, class: "form-control", rows: 3, placeholder: "Valor registrado" %>
+              <% if @serie_historica.errors[:Valor].any? %>
+                <div class="text-danger small mt-1"><%= @serie_historica.errors[:Valor].first %></div>
+              <% end %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :valor_original, "Valor Original (texto bruto)", class: "form-label fw-bold" %>
+              <%= f.text_area :valor_original, class: "form-control", rows: 3, placeholder: "Valor original conforme fonte" %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :Tipo_Valor, "Tipo de Valor", class: "form-label fw-bold" %>
+              <%= f.text_field :Tipo_Valor, class: "form-control", placeholder: "Ex: Percentual, Absoluto, etc." %>
+            </div>
+
+            <!-- Botões de Ação -->
+            <div class="d-flex justify-content-between">
+              <%= link_to "Cancelar", :back, class: "btn btn-secondary" %>
+              <div>
+                <%= f.submit "Salvar", class: "btn btn-primary" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card de Ajuda -->
+    <div class="col-lg-4">
+      <div class="card shadow">
+        <div class="card-header bg-white">
+          <h6 class="fw-bold"><i class="fas fa-lightbulb me-2"></i>Informações</h6>
+        </div>
+        <div class="card-body">
+          <ul class="list-unstyled mb-0">
+            <li class="mb-3">
+              <i class="fas fa-check-circle text-success me-2"></i>
+              <strong>Ano:</strong> Ano de referência do dado
+            </li>
+            <li class="mb-3">
+              <i class="fas fa-check-circle text-success me-2"></i>
+              <strong>Valor:</strong> Valor registrado do indicador
+            </li>
+            <li class="mb-3">
+              <i class="fas fa-check-circle text-success me-2"></i>
+              <strong>Status:</strong> Indica se o dado está disponível
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

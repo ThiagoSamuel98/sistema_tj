@@ -1,0 +1,36 @@
+<!-- Navbar - Barra de Navegação Superior -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm px-4">
+  <div class="container-fluid">
+    <!-- Botão Toggle Sidebar -->
+    <button class="btn btn-outline-secondary" id="sidebarToggle">
+      <i class="fas fa-bars"></i>
+    </button>
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+          <span class="nav-link text-muted">
+            <i class="fas fa-user-circle me-1"></i>
+            <%= Date.today.strftime("%d/%m/%Y") %>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<script>
+// Toggle Sidebar
+document.getElementById('sidebarToggle').addEventListener('click', function() {
+  const sidebar = document.getElementById('sidebar-wrapper');
+  if (sidebar.style.marginLeft === '-250px') {
+    sidebar.style.marginLeft = '0';
+  } else {
+    sidebar.style.marginLeft = '-250px';
+  }
+});
+</script>

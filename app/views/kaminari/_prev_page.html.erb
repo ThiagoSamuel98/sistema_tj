@@ -1,0 +1,12 @@
+<%# Link para a página anterior - Kaminari + Bootstrap 5 %>
+<% if current_page.first? %>
+  <li class="page-item disabled">
+    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+      <%= raw(t 'views.pagination.previous').html_safe %>
+    </a>
+  </li>
+<% else %>
+  <li class="page-item">
+    <%= link_to raw(t 'views.pagination.previous').html_safe, url, rel: 'prev', remote: remote, class: 'page-link' %>
+  </li>
+<% end %>

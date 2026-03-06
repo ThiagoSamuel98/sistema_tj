@@ -1,0 +1,10 @@
+<%# Link de página individual - Kaminari + Bootstrap 5 %>
+<% if current_page? %>
+  <li class="page-item active" aria-current="page">
+    <a class="page-link" href="#"><%= page %></a>
+  </li>
+<% else %>
+  <li class="page-item">
+    <%= link_to page, url, remote: remote, rel: rel, class: 'page-link' %>
+  </li>
+<% end %>

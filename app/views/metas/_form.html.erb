@@ -1,0 +1,115 @@
+<% provide :title, (@meta.new_record? ? "Nova Meta" : "Editar Meta") %>
+
+<div class="container-fluid">
+  <div class="row mb-4">
+    <div class="col-12">
+      <h1 class="h3 mb-3 text-gray-800">
+        <i class="fas fa-<%= @meta.new_record? ? 'plus-circle' : 'edit' %> me-2"></i>
+        <%= @meta.new_record? ? "Nova Meta" : "Editar Meta" %>
+      </h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="card shadow">
+        <div class="card-body">
+          <%= form_with model: @meta, local: true do |f| %>
+            
+            <% if @indicador %>
+              <%= f.hidden_field :indicador_id %>
+            <% else %>
+              <div class="mb-3">
+                <%= f.label :indicador_id, "Indicador", class: "form-label fw-bold" %>
+                <%= f.collection_select :indicador_id, Indicador.order(:indicador), :id, :indicador, 
+                    { prompt: "Selecione o indicador" }, 
+                    class: "form-select" %>
+                <% if @meta.errors[:indicador_id].any? %>
+                  <div class="text-danger small mt-1"><%= @meta.errors[:indicador_id].first %></div>
+                <% end %>
+              </div>
+            <% end %>
+
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <%= f.label :ano, class: "form-label fw-bold" %>
+                <%= f.number_field :ano, class: "form-control", min: 2015, max: Date.today.year %>
+                <% if @meta.errors[:ano].any? %>
+                  <div class="text-danger small mt-1"><%= @meta.errors[:ano].first %></div>
+                <% end %>
+              </div>
+
+              <div class="col-md-6">
+                <%= f.label :formato_objetivo, "Formato do Objetivo", class: "form-label fw-bold" %>
+                <%= f.select :formato_objetivo,
+                    [['Percentual', 'percentual'], ['Decimal', 'decimal']],
+                    { prompt: "Selecione o formato" },
+                    class: "form-select" %>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :descricao_da_meta, "Descrição da Meta", class: "form-label fw-bold" %>
+              <%= f.text_area :descricao_da_meta, class: "form-control", rows: 4, placeholder: "Descrição detalhada da meta" %>
+              <% if @meta.errors[:descricao_da_meta].any? %>
+                <div class="text-danger small mt-1"><%= @meta.errors[:descricao_da_meta].first %></div>
+              <% end %>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <%= f.label :tipo_objetivo, "Tipo Objetivo", class: "form-label fw-bold" %>
+                <%= f.number_field :tipo_objetivo, class: "form-control", step: 0.01 %>
+                <% if @meta.errors[:tipo_objetivo].any? %>
+                  <div class="text-danger small mt-1"><%= @meta.errors[:tipo_objetivo].first %></div>
+                <% end %>
+              </div>
+
+              <div class="col-md-6">
+                <%= f.label :resultado, "Resultado Alcançado", class: "form-label fw-bold" %>
+                <%= f.number_field :resultado, class: "form-control", step: 0.01 %>
+              </div>
+            </div>
+
+            <!-- Botões de Ação -->
+            <div class="d-flex justify-content-between">
+              <%= link_to "Cancelar", :back, class: "btn btn-secondary" %>
+              <div>
+                <%= f.submit "Salvar", class: "btn btn-success" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card de Ajuda -->
+    <div class="col-lg-4">
+      <div class="card shadow">
+        <div class="card-header bg-white">
+          <h6 class="fw-bold"><i class="fas fa-lightbulb me-2"></i>Informações</h6>
+        </div>
+        <div class="card-body">
+          <ul class="list-unstyled mb-0">
+            <li class="mb-3">
+              <i class="fas fa-check-circle text-success me-2"></i>
+              <strong>Ano:</strong> Ano de referência da meta
+            </li>
+            <li class="mb-3">
+              <i class="fas fa-check-circle text-success me-2"></i>
+              <strong>Descrição:</strong> Detalhamento da meta estabelecida
+            </li>
+            <li class="mb-3">
+              <i class="fas fa-check-circle text-success me-2"></i>
+              <strong>Formato:</strong> Percentual (%) ou Decimal (0-1)
+            </li>
+            <li class="mb-3">
+              <i class="fas fa-check-circle text-success me-2"></i>
+              <strong>Resultado:</strong> Valor alcançado (opcional)
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

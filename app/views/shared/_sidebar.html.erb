@@ -1,0 +1,27 @@
+<!-- Sidebar - Menu Lateral -->
+<div class="bg-dark" id="sidebar-wrapper" style="min-width: 250px; max-width: 250px; min-height: 100vh;">
+  <div class="sidebar-heading text-white py-4 px-3 fs-5 fw-bold border-bottom border-secondary">
+    <i class="fas fa-balance-scale me-2"></i>Sistema TJ
+  </div>
+  <div class="list-group list-group-flush">
+    <%= link_to dashboard_path, class: "list-group-item list-group-item-action list-group-item-dark p-3 #{current_page?(dashboard_path) ? 'active' : ''}" do %>
+      <i class="fas fa-chart-line me-2"></i>Dashboard
+    <% end %>
+    
+    <%= link_to indicadores_path, class: "list-group-item list-group-item-action list-group-item-dark p-3 #{current_page?(indicadores_path) ? 'active' : ''}" do %>
+      <i class="fas fa-chart-bar me-2"></i>Indicadores
+    <% end %>
+    
+    <%= link_to serie_historicas_path, class: "list-group-item list-group-item-action list-group-item-dark p-3 #{current_page?(serie_historicas_path) ? 'active' : ''}" do %>
+      <i class="fas fa-history me-2"></i>Série Histórica
+    <% end %>
+    
+    <%= link_to metas_path, class: "list-group-item list-group-item-action list-group-item-dark p-3 #{current_page?(metas_path) ? 'active' : ''}" do %>
+      <i class="fas fa-bullseye me-2"></i>Metas
+    <% end %>
+    
+    <%= link_to documentos_path, class: "list-group-item list-group-item-action list-group-item-dark p-3 #{current_page?(documentos_path) ? 'active' : ''}" do %>
+      <i class="fas fa-file-alt me-2"></i>Documentos
+    <% end %>
+  </div>
+</div>

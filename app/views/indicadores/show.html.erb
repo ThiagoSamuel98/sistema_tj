@@ -1,0 +1,277 @@
+<% provide :title, @indicador.indicador %>
+
+<div class="container-fluid">
+  <!-- Breadcrumb -->
+  <nav aria-label="breadcrumb" class="mb-4">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><%= link_to "Dashboard", dashboard_path %></li>
+      <li class="breadcrumb-item"><%= link_to "Indicadores", indicadores_path %></li>
+      <li class="breadcrumb-item active"><%= truncate(@indicador.indicador, length: 50) %></li>
+    </ol>
+  </nav>
+
+  <!-- Header do Indicador -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="card shadow">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-start">
+            <div>
+              <h2 class="h3 mb-2"><%= @indicador.indicador %></h2>
+              <span class="badge <%= @indicador.tipo == 'nacional' ? 'bg-info' : 'bg-warning' %>">
+                <%= @indicador.tipo.titleize %>
+              </span>
+            </div>
+            <div class="text-end">
+              <div class="btn-group" role="group">
+                <%= link_to "Editar", edit_indicador_path(@indicador), class: "btn btn-primary" %>
+                <%= link_to "Voltar", indicadores_path, class: "btn btn-secondary" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Informações Detalhadas -->
+  <div class="row mb-4">
+    <div class="col-lg-6">
+      <div class="card shadow h-100">
+        <div class="card-header bg-white">
+          <h6 class="fw-bold"><i class="fas fa-info-circle me-2"></i>Informações do Indicador</h6>
+        </div>
+        <div class="card-body">
+          <table class="table table-borderless">
+            <tr>
+              <th class="text-muted" style="width: 30%">O que se mede:</th>
+            </tr>
+            <tr>
+              <td class="pb-3"><%= @indicador.o_que_se_mede || 'Não informado' %></td>
+            </tr>
+            <tr>
+              <th class="text-muted">Periodicidade:</th>
+              <td><%= @indicador.periodicidade || 'Não informada' %></td>
+            </tr>
+            <tr>
+              <th class="text-muted">Onde medir:</th>
+              <td><%= @indicador.onde_medir || 'Não informado' %></td>
+            </tr>
+            <tr>
+              <th class="text-muted">Como medir:</th>
+              <td><%= @indicador.como_medir || 'Não informado' %></td>
+            </tr>
+            <tr>
+              <th class="text-muted">Tendência:</th>
+              <td><%= @indicador.tedencia || 'Não informada' %></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dados do Ano Selecionado -->
+    <div class="col-lg-6">
+      <div class="card shadow h-100">
+        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+          <h6 class="fw-bold mb-0"><i class="fas fa-calendar me-2"></i>Dados de <%= @ano_selecionado %></h6>
+          <%= form_with url: @indicador, method: :get, local: true do %>
+            <select name="ano" class="form-select form-select-sm" style="width: auto;" onchange="this.form.submit()">
+              <% @anos_disponiveis.each do |ano| %>
+                <option value="<%= ano %>" <%= 'selected' if ano == @ano_selecionado %>>
+                  <%= ano %>
+                </option>
+              <% end %>
+            </select>
+          <% end %>
+        </div>
+        <div class="card-body">
+          <% if @historico %>
+            <div class="mb-4">
+              <label class="text-muted small mb-1">Valor Registrado</label>
+              <div class="h3 text-primary">
+                <i class="fas fa-chart-line me-2"></i><%= @historico.valor || 'N/A' %>
+              </div>
+              <% if @historico.valor_original.present? %>
+                <small class="text-muted">Original: <%= @historico.valor_original %></small>
+              <% end %>
+            </div>
+          <% else %>
+            <div class="alert alert-warning mb-4">
+              <i class="fas fa-exclamation-triangle me-2"></i>
+              Sem dados de série histórica para <%= @ano_selecionado %>
+            </div>
+          <% end %>
+          
+          <% if @meta %>
+            <div class="mb-3">
+              <label class="text-muted small mb-1">Meta Definida</label>
+              <div class="h4 text-success">
+                <i class="fas fa-bullseye me-2"></i><%= @meta.descricao_da_meta || 'N/A' %>
+              </div>
+              <% if @meta.tipo_objetivo.present? %>
+                <small class="text-muted">Tipo objetivo: <%= @meta.tipo_objetivo %></small>
+              <% end %>
+            </div>
+          <% else %>
+            <div class="alert alert-info mb-0">
+              <i class="fas fa-info-circle me-2"></i>
+              Sem meta definida para <%= @ano_selecionado %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gráfico de Evolução -->
+  <% if @serie_completa.any? %>
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="card shadow">
+          <div class="card-header bg-white">
+            <h6 class="fw-bold">
+              <i class="fas fa-chart-area me-2"></i>Evolução Histórica
+            </h6>
+          </div>
+          <div class="card-body">
+            <canvas id="historicoChart" style="max-height: 350px;"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <!-- Tabelas de Série Histórica e Metas -->
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="card shadow">
+        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+          <h6 class="fw-bold mb-0">
+            <i class="fas fa-history me-2"></i>Série Histórica
+          </h6>
+          <%= link_to "Novo", new_indicador_serie_historica_path(@indicador), class: "btn btn-sm btn-primary" %>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-sm table-hover">
+              <thead class="table-light">
+                <tr>
+                  <th>Ano</th>
+                  <th>Valor</th>
+                  <th>Status</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @serie_completa.order(ano: :desc).limit(10).each do |sh| %>
+                  <tr>
+                    <td><%= sh.ano %></td>
+                    <td><%= sh.valor || 'N/A' %></td>
+                    <td>
+                      <span class="badge <%= sh.status == 'indisponivel' ? 'bg-secondary' : 'bg-success' %>">
+                        <%= sh.status || 'disponivel' %>
+                      </span>
+                    </td>
+                    <td class="text-end">
+                      <%= link_to "Editar", edit_serie_historica_path(sh), class: "btn btn-sm btn-outline-secondary" %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <% if @serie_completa.count > 10 %>
+            <div class="text-center mt-3">
+              <%= link_to "Ver todos", indicador_serie_historicas_path(@indicador), class: "btn btn-sm btn-outline-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="card shadow">
+        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+          <h6 class="fw-bold mb-0">
+            <i class="fas fa-bullseye me-2"></i>Metas
+          </h6>
+          <%= link_to "Nova", new_indicador_meta_path(@indicador), class: "btn btn-sm btn-success" %>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-sm table-hover">
+              <thead class="table-light">
+                <tr>
+                  <th>Ano</th>
+                  <th>Descrição</th>
+                  <th>Resultado</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @metas_historicas.order(ano: :desc).limit(10).each do |meta| %>
+                  <tr>
+                    <td><%= meta.ano %></td>
+                    <td><%= truncate(meta.descricao_da_meta, length: 30) || 'N/A' %></td>
+                    <td><%= meta.resultado || 'N/A' %></td>
+                    <td class="text-end">
+                      <%= link_to "Editar", edit_meta_path(meta), class: "btn btn-sm btn-outline-secondary" %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <% if @metas_historicas.count > 10 %>
+            <div class="text-center mt-3">
+              <%= link_to "Ver todas", indicador_metas_path(@indicador), class: "btn btn-sm btn-outline-success" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const ctx = document.getElementById('historicoChart').getContext('2d');
+  
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: <%= @serie_completa.order(ano: :asc).pluck(:ano).to_json %>,
+      datasets: [{
+        label: 'Valor',
+        data: <%= @serie_completa.order(ano: :asc).pluck(:valor).to_json %>,
+        borderColor: '#4e73df',
+        backgroundColor: 'rgba(78, 115, 223, 0.1)',
+        fill: true,
+        tension: 0.4,
+        pointBackgroundColor: '#4e73df',
+        pointBorderColor: '#fff',
+        pointBorderWidth: 2,
+        pointRadius: 5,
+        pointHoverRadius: 7
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: {
+        legend: { display: false }
+      },
+      scales: {
+        y: { 
+          beginAtZero: false,
+          grid: { color: 'rgba(0, 0, 0, 0.05)' }
+        },
+        x: {
+          grid: { display: false }
+        }
+      }
+    }
+  });
+});
+</script>

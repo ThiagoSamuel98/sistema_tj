@@ -1,0 +1,109 @@
+<% provide :title, "Indicadores" %>
+
+<div class="container-fluid">
+  <!-- Header -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <h1 class="h3 mb-2 text-gray-800">
+            <i class="fas fa-chart-bar me-2"></i>Indicadores
+          </h1>
+          <p class="text-muted">
+            <%= @total_com_filtro %> de <%= @total_geral %> indicadores cadastrados
+          </p>
+        </div>
+        <%= link_to "Novo Indicador", new_indicador_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filtros -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <%= form_with url: indicadores_path, method: :get, local: true do %>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Buscar por nome</label>
+                <input type="text" name="filtro" class="form-control" 
+                       placeholder="Digite o nome do indicador..." 
+                       value="<%= @filtro %>">
+              </div>
+              <div class="col-md-4">
+                <label class="form-label">Tipo</label>
+                <select name="tipo" class="form-select">
+                  <option value="">Todos</option>
+                  <option value="nacional" <%= 'selected' if @tipo == 'nacional' %>>Nacional</option>
+                  <option value="institucional" <%= 'selected' if @tipo == 'institucional' %>>Institucional</option>
+                </select>
+              </div>
+              <div class="col-md-2 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary w-100">
+                  <i class="fas fa-search me-1"></i>Filtrar
+                </button>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabela de Indicadores -->
+  <div class="card shadow">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead class="table-light">
+            <tr>
+              <th style="width: 40%">Indicador</th>
+              <th>Tipo</th>
+              <th>Periodicidade</th>
+              <th>O que se mede</th>
+              <th class="text-center">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @indicadores.each do |indicador| %>
+              <tr>
+                <td>
+                  <div class="fw-bold"><%= indicador.indicador %></div>
+                </td>
+                <td>
+                  <span class="badge <%= indicador.tipo == 'nacional' ? 'bg-info' : 'bg-warning' %>">
+                    <%= indicador.tipo.titleize %>
+                  </span>
+                </td>
+                <td><%= indicador.periodicidade || 'N/A' %></td>
+                <td>
+                  <small class="text-muted">
+                    <%= truncate(indicador.o_que_se_mede, length: 80) || 'Não informado' %>
+                  </small>
+                </td>
+                <td class="text-center">
+                  <div class="btn-group btn-group-sm" role="group">
+                    <%= link_to "Ver", indicador, class: "btn btn-outline-primary", title: "Ver detalhes" %>
+                    <%= link_to "Editar", edit_indicador_path(indicador), class: "btn btn-outline-secondary", title: "Editar" %>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <!-- Paginação -->
+    <% if @indicadores.total_pages > 1 %>
+      <div class="card-footer bg-white">
+        <nav aria-label="Page navigation">
+          <ul class="pagination justify-content-center mb-0">
+            <%= paginate @indicadores %>
+          </ul>
+        </nav>
+      </div>
+    <% end %>
+  </div>
+</div>
