@@ -1,0 +1,223 @@
+Indicador;Tipo;O que se mede;Periodicidade;Onde medir;Como medir;Tendência
+ÍNDICE  DO PODER JUDICIÁRIO  DE ACESSO  À JUSTIÇA;Nacional;"Trata -se de indicador  que busca  medir  o acesso  à justiça,  pensado  a partir  de três tipos  de capitais  (cidadania, 
+população  e judiciário),  desmembrados  em dimensões  (direitos  e deveres,  vulnerabilidade  e acesso  a serviços 
+públicos; perfil e dinâmica demográfica; e padrão de resolução de conflitos, distribuição e acesso a serviços 
+públicos e inovação tecnológica).";Anual;Relatório  Índice  de Acesso  à Justiça  - CNJ;"Perspectiva Cidadania:
+Variáveis:
+Percentual de Analfabetismo das pessoas de 15 anos ou mais (ANALFABETISMO)
+Percentual Nascidos Vivos de mães entre 10 e 19 anos(TAXA DE NASCIDOS VIVOS) Défice
+de Altura para a Idade (DAI)
+Défice de Peso para a Idade (DPI)
+Percentual de moradores em grau por 100 mil habitantes domicílios com água canalizada (TAXA ÁGUA CANALIZADA)
+CP1 = ?0,3344 * ANALFABETISMO ? 0,515 * TAXA DE NASCIDOS VIVOS ? 0,4412 * DAI ? 0,4635 * DPI + 0,4621 *
+TAXA ÁGUA CANALIZADA
+CP2 = ?0,6956 * ANALFABETISMO + 0,0344 * TAXA DE NASCIDOS VIVOS + 0,4783 * DAI + 0,3819 * DPI + 0,3747
+* TAXA ÁGUA CANALIZADA
+Perspectiva População:
+Variáveis:
+Percentual de mulheres na população (TAXA MULHER) Coeficiente
+de Gini (COEFICIENTE GINI)
+Percentual de pessoas com idade superior a 50 anos (IDADE 50 E MAIS) Taxa
+de Escolarização (TAXA ESCOLARIZAÇÃO)
+Percentual de pessoas na população que se autodeclaram não brancas (COR NÃO BRANCA)
+CP1 = 0,1677 * TAXA MULHER ? 0,4279 * COEFICIENTE GINI + 0,5154 * IDADE 50 E MAIS ? 0,5237 * TAXA ESCOLARIZAÇÃO ? 0,4988 * COR NÃO BRANCA
+CP2 = 0,8076 * TAXA MULHER + 0,4909 * COEFICIENTE GINI + 0,2032 * IDADE 50 E MAIS ? 0,1439 * TAXA ESCOLARIZAÇÃO + 0,2114 * COR NÃO BRANCA
+Perspectiva Judiciário:
+Variáveis:
+Tempo médio de decisão - TEMPO DECISÃO (Média das Variáveis CNJ TpSentC1º, TpSentEx1º, TpSentCJE, TpSentExJE, TpDecTR e TpDec2º)
+Taxa de Magistrados na população (TAXA MAGISTRADOS NA POPULAÇÃO)
+Taxa de Varas na população (TAXA VARAS NA POPULAÇÃO)
+Quantidade de Casos Novos do 1º grau por 100 mil habitantes (CASOS NOVOS 1G POR 100 MIL HAB)
+CP1 = 0,354 * TEMPO DECISÃO ? 0,576 * TAXA MAGISTRADOS NA POPULAÇÃO ? 0,532 * TAXA VARAS NA POPULAÇÃO ? 0,507 * CASOS NOVOS 1G POR 100 MIL HAB
+CP2 = ?0,930 * TEMPO DECISÃO ? 0,267 * TAXA MAGISTRADOS NA POPULAÇÃO ? 0,115 * TAXA VARAS NA POPULAÇÃO ? 0,223 * CASOS NOVOS 1G POR 100 MIL HAB
+Cálculo do SCORE:
+Calcular um escore para a CP1 e para a CP2 de cada Capital. Em seguida, somam-se ambos os escores de cada
+Capital e, por fim, padroniza-os com a Fórmula: (ESCORE DO TRIBUNAL - VALOR MÍNIMO DOS ESCORES DE CADA
+CAPITAL) / (VALOR MÁXIMO - VALOR MÍNIMO DOS ESCORES DE CADA CAPITAL)
+Essa padronização deve ser feita, isoladamente, para a Cidadania, a População e o Judiciário. Sendo que para
+obter o IAJ, extrai-se a média aritmética dos três índices anteriores. A padronização garante que o índice varie no
+intervalo de 0 a 1, permitindo uma comparação entre as Unidades Judiciárias (Tribunais)";Quanto  maior,  melhor
+Índice  de Satisfação  com  o Atendimento;Institucional;Indica  a percepção  dos jurisdicionados  quanto  o atendimento  pelo  poder  judiciário.;Anual;Pesquisa  de campo,  realizada,  preferencialmente,  pela  Secretaria  de Gestão  Estratégica  do TJPI.;"Análise dos resultados da pesquisa e das respostas dos participantes
+";Quanto  maior , melhor.
+Índice  de Satisfação  Interna;Institucional;Indica  a percepção  dos servidores  quanto  à satisfação  e o clima  organizacional  dentro  do TJ-PI.;Anual;Pesquisa  de campo,  realizada,  preferencialmente,  pela  Secretaria  de Gestão  Estratégica  do TJPI.;Análise  dos resultados  da pesquisa  e das respostas  dos participantes;Quanto  maior,  melhor.
+Índice  de Transparência;Nacional;"É o percentual  obtido  no Ranking  da Transparência  do Poder  Judiciário,  instituído  pela  Resolução  CNJ n. 215,  de 16 
+de dezembro de 2015.";Anual;CNJ/DGE,  em https://w ww.cnj.jus.br/transparencia -cnj/ranking -da-transparencia/.;"É a média ponderada dos itens avaliados, conforme requisitos e pesos em vigor detalhados na normativa mais
+recente.";Quanto  maior,  melhor
+TCExtFisc  - Taxa  de Congestionamento  das Execuções  Fiscais;Nacional;"O percentual  de casos  de execução  fiscal  que permaneceram  pendentes  
+de solução  ao final  do período -base,  em relação  ao que tramitou  (soma  dos pendentes  e dos baixados)  durante 
+o período -base.";Mensal;"Base  de Dados  do Poder  Judiciário  do Piauí,  levando -se em consideração  as fórmulas  e os glossários  da Reso - 
+lução CNJ n. 76/2009, bem como a para - 
+metrização  do Justiça  em Números.";"TCExtFisc = CPExtFisc1 / (CPExtFisc1 + TBaixExtFisc1), onde: 
+CPExtFisc1   Casos  pendentes  de Execução  Fiscal  no 1o grau;  e 
+TBaixExtFisc1   Total  de Processos  Baixados  de Execução  Fiscal  no 1o Grau.";Quanto  menor,  melhor
+TCL - Taxa  de Congestionamento  Líquida , Exceto Execusões Fiscais.;Nacional;"Indica  o percentual  de processos  que,  no período -base,  permaneceu  em tramitação  sem solução  definitiva.  São 
+desconsiderados os processos suspensos, sobrestados ou em arquivo provisório e as execuções fiscais.";Mensal;"Base  de Dados  do Poder  Judiciário  do Piauí,  levando -se em consideração  as fórmulas  e os glossários  da Resolução 
+CNJ n. 76/2009, bem como a para - 
+metrização  do Justiça  em Números.";"TCL = (Cp - CpExtFisc1  - SuSExNfisc1)  / (TBaix  - TBaixExtFisc1  + Cp - CpExtFisc1   SuSExNfisc1),  onde: 
+Cp  Total de casos pendentes;  
+CpExtFisc1   Casos  Pendentes  de Execução  Fiscal  no 1o grau;  
+SuSExNfisc1   Total  de processos  suspensos,  sobrestados  ou em arquivo  provisório,  exceto  os processos  de Exe- 
+cução  Fiscal;  
+Baix  Total  de processos  baixados;  e 
+TBaixExtFisc1   Total  de Processos  Baixados  de Execução  Fiscal  no 1o Grau.";Quanto  menor,  melhor.
+IAD - Índice  de Atendimento  à Demanda;Nacional;"Indica  a capacidade  do Tribunal  de Justiça  do Piauí  em dar vazão  em, pelo  menos,  o mesmo  número  de processos 
+ingressados, situação em que o indicador atinge o valor igual ou superior a 100%.";Mensal;"Base  de Dados  do Poder  Judiciário  do Piauí,  levando -se em consideração  as fórmulas  e os glossários  da Resolução 
+CNJ n. 76/2009, bem como a para - 
+metrização  do Justiça  em Números.";"  IAD = TBaix / Cn, onde: 
+TBaix   Total  de Baixados;  e 
+Cn  Casos Novos";Quanto  maior,  melhor.
+Tempo de Tramitação dos Processos Pendentes Líquidos;Nacional;"Tempo de tramitação dos processos pendentes líquidos, desconsiderando os períodos em 
+que os processos permaneceram suspensos, sobrestados ou em arquivo provisório.";Semestral;Banco Nacional de Dados do Poder Judiciário (DATAJUD);"Para cada processo do TJPI, pendente ao final do ano -base, calcular o número de dias corridos entre a 
+data do protocolo e o último dia do ano -base. Após, calcular a média dos tempos considerados.";Quanto  menor,  melhor.
+ IPM - Índice de Produtividade dos Magistrados realizado; Institucional;Indica a média de processos baixados por magistrado(a) em atuação;"Mensal
+";"Base de Dados do Poder Judiciário do Piauí, levando-se em consideração as fórmulas e os glossários da Resolução
+CNJ n. 76/2009, bem como a parametrização do Justiça em Números.";"IPM = TBaix / TMag, onde:
+TBaix  Total de Baixados; e
+TMag  Total de Magistrados.";Quanto maior, melhor
+ IPS-Jud - Índice de Produtividade dos Servidores da área Judiciária; Institucional;"Indica a média de processos baixados por servidor(a) da área judiciária.
+";"Mensal
+";"Base de Dados do Poder Judiciário do Piauí, levando-se em consideração as fórmulas e os glossários da Resolução
+CNJ n. 76/2009, bem como a parametrização do Justiça em Números.";"IPS-Jud = TBaix / (TSE-Jud + TSR-Jud + TSC-Jud), onde:
+TBaix  Total de Baixados;
+TSE-Jud  Total de Servidores Efetivoslotados na área judiciária;
+TSR-Jud  Total de Servidores Requisitados lotados na área judiciária; e
+TSC-Jud  Total de Servidores Comissionados lotados na área judiciária.";Quanto maior, melhor
+ Índice de Produtividade Comparada da Justiça - IPC-Jus; Institucional;"O indicador busca resumir a produtividade e a eficiência relativa dos tribunais em um escore único, ao comparar
+a eficiência otimizada com a aferida em cada unidade judiciária, a partir da técnica de Análise Envoltória de Dados
+(Data Envelopment Analysis - DEA). Esse método permite comparações entre tribunais do mesmo ramo de justiça,
+independentemente do porte, pois considera o que foi produzido a partir dos recursos ou insumos disponíveis para
+cada tribunal";"Anual
+";Relatório Justiça em Números - CNJ;"- 5 variáveis: 1 output (Processos Baixados), 4 inputs (despesa total, número de magistrados, número de servidores
+efetivos)
+Orientação eficiência: Orientado ao produto (Output Oriented)
+Forma da fronteira de eficiência: Retornos Constantes de Escala (CRS)
+Insumos: Despesa Total do Tribunal (DT), Força de Trabalho (Magistrados+Servidores, FTT)
+Produto: Processos Baixados (PB)
+Executa o DEA
+resultado=dea(insumos, produto,RTS=CRS,ORIENTATION=out, DUAL=T)";Quanto maior, melhor
+"Índice de Desempenho no Prêmio CNJ de Qualidade: Eixo Produtividade
+"; Institucional;"Indica aspectos da gestão judiciária relacionados ao cumprimento das Metas Nacionais, à celeridade processual, à redução de acervo e ao incentivo à conciliação.
+";Mensal;Resultado do Prêmio CNJ de Qualidade;Resultado do Prêmio CNJ de Qualidade;Quanto maior, melhor
+Índice  de Prescrição;Nacional;"Indica  a razão  entre  o total  de julgamentos  por prescrição  em relação  ao total  de julgamentos  de processos  rela- 
+tivos  à Improbidade  Administrativa,  à Corrupção  e aos Ilícitos  Eleitorais,  conforme  tabelas  de classes  e assuntos 
+constante do anexo I do CNJ.";Semestral;"Base de Dados do Poder Judiciário do Piauí, para obtenção do número de sentenças com movimento de pres - 
+crição  em relação  ao total  de sentenças,  conforme  classes  e assuntos  das Tabelas  Processuais  Unificadas  (TPUs).";"Índice de Prescrição = Julgamentos com prescrição / SentC, onde:
+Julgamentos com prescrição = Processos computados em SentC que receberam os movimentos 471 (para os
+casos de improbidade) e 11879, 11878 e 1045 (corrupção e ilícitos eleitorais); e
+SentC = sentenças de conhecimento.
+";Quanto  menor,  melhor
+"TpCpICE  - Tempo  Médio  dos Processos  Pendentes  de Improbidade, Corrupção e Crimes Eleitorais
+";Nacional;"Indica  o tempo  médio  dos processos  pendentes  de improbidade,  corrupção  e crimes  eleito - 
+rais.";Semestral;"Base  de Dados  do Poder  Judiciário  do Piauí,  levando -se em consideração  as fórmulas  e os 
+glossários da Resolução CNJ n. 76/2009, bem como a para - 
+metrização  do Justiça  em Números.";"Calculado pela fórmula: tpcpice = ? total de casos pendentes nos processos de corrupção,
+improbidade administrativa e de ilícitos eleitorais pendentes ( data base de cálculo - data
+autuação/recebimento) / total de casos pendentes nos processos de corrupção, improbidade
+administrativa e de ilícitos eleitorais pendentes tpsentirdr = (??=1^sentirdr (dtacordaoirdr? 
+dtadmisirdr?))/sentirdr.";Quanto  menor,  melhor
+Índice de Processos Administrativos Disciplinares Baixados;Nacional;"Indica o percentual de Processos Administrativos Disciplinares baixados em relação ao acervo 
+de Processos Administrativos Disciplinares no tribunal, no período.";Semestral;Corregedoria Nacional de Justiça.;"Calculado pela fórmula: ÍNDICE DE PADs BAIXADOS = ( PADs BAIXADOS) / ( PADs Pendentes + PADs
+NOVOS";Quanto  menor,  melhor
+Índice  de Conciliação;Nacional;"Indica  o percentual  entre  o total  de sentenças  homologatórias  de acordo  em relação  ao total  de sentenças,  con- 
+forme  fórmulas  e glossários  da Resolução  CNJ n. 76. Serão  consideradas  as sentenças  de todas  as fases  (conheci - 
+mento e execução), bem como de todas as instâncias.";Mensal;"Base  de Dados  do Poder  Judiciário  do Piauí,  levando -se em consideração  as fórmulas  e os glossários  da Resolução 
+CNJ n. 76/2009, bem como a para - 
+metrização  do Justiça  em Números.";"IC = SentH / Sent, onde:
+SentH  Total de sentenças homologatórias de acordo; e
+Sent  Total de sentenças";Quanto  maior,  melhor.
+Índice de Audiência de Conciliação e Mediação Realizada nas fases pre -processual e conhecimento.;Institucional;"Indica  o total  de audiências  Audiencia de Conciliação e Mediação Realizada nas fases pre -processual e 
+conhecimento.";Anual;Resultado do Prêmio CNJ de Qualidade.;"total de audiências de conciliação e mediação realizadas na fase pré-processual e na fase de conhecimento, em
+relação à soma de procedimentos pré-processuais recebidos e de casos novos de conhecimento não criminais""";Quanto  maior,  melhor.
+Índice de sentenças e decisões terminativas homologatórias do 2º grau e Turmas Recursais.;Institucional;Indica  o total  de de sentenças e decisões terminativas homologatórias do 2º grau e Turmas Recursais;Anual;Resultado do Pr êmio CNJ de Qualidade.;"Calculado pela fórmula:total de processos com sentenças e decisões terminativas
+homologatórias de acordo, em relação ao total de processos com sentenças e decisões
+terminativas, considerando os processos de conhecimento não criminais de segundo grau e
+de turmas recursais";Quanto  maior,  melhor.
+Tempo Médio entre o Trânsito em Julgado ou Sentença de Mérito do Precedente e a Sentença de Aplicação da Tese;Nacional;"O tempo  decorrido  entre  o trânsito  em julgado/sentença  de mérito  de um precedente  e o jul- 
+gamento  dos respectivos  processos  suspensos,  em relação  ao total  de processos  que estavam 
+sobrestados e foram julgados após julgamento do precedente.";Semestral;Banco Nacional de Dados de Demandas Repetitivas e Precedentes Obrigatórios (BNPR);"TPSENTSOBR = ? (DATA DE TRANSITO EM JULGADO DO PROCESSO SOBRESTADO - DATA DA
+SENTENÇA DO MÉRITO DO PRECEDENTE)/( TOTAL DE PROCESSOS JULGADOS QUE ESTAVAM
+SOBRESTADOS POR DETERMINADO PRECEDENTE JÁ JULGADO)";Quanto  menor,  melhor
+Tempo Médio entre Afetação/Admissão e a Publicação de Acórdão d Mérito nos Incidentes de Resolução de Demandas Repetitivas (IRDR);Nacional;"Indica  o tempo  decorrido  entre  a afetação/admissão  e publicação  do acórdão  de mérito  nos 
+incidentes  de resolução  de demandas  repetitivas  (IRDRS),  em relação  ao total  de IRDRS  com 
+acórdãos publicados no ano.";Semestral;Banco Nacional de Dados de Demandas Repetitivas e Precedentes Obrigatórios (BNPR);"TPSENTIRDR = ? (DATA DE PUBLICACAO DO ACORDAO NO INCIDENTE DE RESOLUÇÃO DE
+DEMANDAS REPETITIVAS - DATA DA AFETAÇÃO/ADMISSÃO DO INCIDENTE DE RESOLUÇÃO DE
+DEMANDAS REPETITIVAS) /( TOTAL DE INCIDENTES DE RESOLUÇÃO DE DEMANDAS REPETITIVAS (IRDR) COM ACÓRDÃOS PUBLICADOS NO ANO)
+";Quanto  menor,  melhor
+IDS - Índice  de Desempenho  de Sustentabilidade;Nacional;"Indica  a avaliação,  em uma  única  dimensão,  do resultado  combinado  de vários  indicadores  distintos  sobre  Sus- 
+tentabilidade, permitindo assim, comparação objetiva entre os tribunais.";Anual;Balanço  Anual  das Sustentabilidade  do Poder  Judiciário.;"Aplicar o método AHP  Analytic Hierarchy Process. Esse é um dos principais modelos matemáticos para apoio à
+teoria da decisão utilizada. O modelo exige que o seja atribuído um nível de importância e priorização para cada
+uma das dimensões analisadas.";Quanto  maior,  melhor.
+Taxa  de Encarceramento;Nacional;Indica  o total  de presos  provisórios  e presos  condenados  por 100 mil habitantes;Mensal;"Banco  Nacional  de Monitoramento  de Prisões  (BNMP  2.0 - link:  https://portalbnmp.cnj.jus. 
+br/#/estatisticas) E Instituto Brasileiro de Geografia e Estatística (IBGE)";TE = ((PRESOS PROVISORIOS + PRESOS CONDENADOS) /(HABITANTES)) * 100.000;Quanto  menor,  melhor
+TpCpCCrim  - Tempo  Médio  dos Processos  Criminais  pendentes  na Fase;Nacional;Indica  o tempo  efetivo  de duração  dos casos  criminais  pendentes  de conhecimento.;Anual;Base de Dados Nacional do Poder Judiciário (Datajud);TpCp aplicada aos processos de conhecimento criminais.;Quanto  menor,  melhor.
+Índice  de Desempenho  no Prêmio  CNJ de Qualidade:  Eixos  Governança e Dados e Tecnologia .;Nacional;"Indica  aspectos  da gestão  judiciária  relacionados  às práticas  administrativas  de controle  e 
+planejamento dos tribunais.";Anual;Resultado do Prêmio CNJ de Qualidade;"PRÊMIO GOV-DADOS = ((SOMA DA PONTUAÇÃO ALCANÇADA NOS EIXOS GOVERNANÇA E
+DADOS E TECNOLOGIA) / (SOMA DA PONTUAÇÃO MÁXIMA NOS EIXOS GOVERNANÇA E
+DADOS E TECNOLOGIA)) * 100
+";Quanto  maior,  melhor
+Índice  de Absenteísmo -Doença;Nacional;"Indica  o percentual  de ausências  por motivo  de doença.  As faltas  são computadas  tanto  para  tratamento  da 
+própria saúde, quanto para tratamento de familiar.";Semestral;"Base  de Dados  do Poder  Judiciário  do Piauí,  levando -se em consideração  as fórmulas  e os glossários  da Resolução 
+CNJ n. 76/2009, bem como a para - 
+metrização  do Justiça  em Números.";"Índice de absenteísmo = Total de dias de ausência por motivo de saúde (própria ou de familiar) / 365 dias x (Total
+de Magistrados + Servidores) x 100
+";Quanto  menor,  melhor
+Percentual da Força de Trabalho Total Participante de Ações de Qualidade de Vida no;Nacional;O percentual  da força  de trabalho  que participou  de ações  de qualidade  de vida no trabalho.;Semestral;"Questionários Socioambiental - https://www.tjpi.jus.br/portaldaestrategia/plano -de-logistica -sustenta - 
+vel-do-tjpi-nova/  
+Base  de Dados  do Poder  Judiciário  do Piauí,  levando -se em consideração  as fórmulas  e os glossários  da Resolução 
+CNJ n. 76/2009, bem como a para - 
+metrização  do Justiça  em Números.";"PRQVT = (PQV/(FTT * TAQ))x100, onde:
+PQVT: Participação de servidores em ações voltadas para qualidade de vida no trabalho (Saúde);
+FTT: Total de trabalhadores do órgão; e
+TAQT: Total de ações de qualidade de vida realizadas(Saúde)";Quanto  maior,  melhor
+Índice  de Capacitação  de Magistrados;Nacional;"Indica  o percentual  de magistrados  capacitados  (participantes  que concluíram,  ao menos,  um curso  de capaci - 
+tação) em relação ao total de magistrados.";Anual;EJUD;"ICAPM = (Total de Magistrados Capacitados/ Total de Magistrados) * 100
+";Quanto  maior,  melhor
+Índice  de Capacitação  de Servidores;Institucional;"Indica  o percentual  de servidores  capacitados  (participantes  que concluíram,  ao menos,  um curso  de capacitação) 
+em relação ao total de servidores.";Anual;EJUD;"ICAPS = (Total de Servidores Capacitados/ Total de Servidores) * 100
+";Quanto  maior,  melhor
+IDOB  - Índice  de Dotações  para  Despesas  Obrigatórias;Nacional;"Mede o percentual de comprometimento dos recursos aprovados na lei orçamentária com 
+as despesas  obrigatórias,  revelando,  por consequência,  as restantes  disponibilidades  para  as 
+despesas sobre as quais a administração tem discricionariedade na utilização.";Mensal;"Este  índice  será  apurado  anualmente  pelo  Conselho  Nacional  de Justiça.  Após  a publicação  da 
+lei orçamentária  de cada  ente  federado.  Estima -se o mês de abril  como  prazo  final  para  a apu- 
+ração.  Devido  a eventuais  diferenças  nos parâmetros  e classificações  orçamentárias  utilizadas 
+em cada  estado,  poderá  haver  a necessidade  de consulta  aos tribunais  de justiça,  previamente 
+a apuração do índice, para confirmação das dotações com essas características.";"IDOB = (DOb / DIn) * 100, onde:
+DOb: Dotação inicial na Lei Orçamentária Anual para despesas obrigatórias;
+DIn: Dotação inicial aprovada na Lei Orçamentária Anual.";Quanto  maior,  melhor
+IEDD  - Índice  de Execução  da Dotações  para  Despesas  Discricionárias;Nacional;"Indica o grau de aproveitamento das dotações aprovadas no orçamento e em créditos adi - 
+cionais e destinadas às despesas discricionárias. O percentual de execução desses recursos 
+no exercício  relaciona -se com  o grau  de acerto  da administração  nas priorizações  feitas  pela 
+administração por ocasião da elaboração da proposta orçamentária.";Mensal;"Este índice será apurado anualmente pelo conselho nacional de justiça, após o encerramen - 
+to do exercício, por meio do Sistema Integrado de Administração Financeira (SIAFI) para o 
+levantamento dos dados relativos aos Tribunais integrantes do Orçamento Geral da União. 
+Estima -se o mês de abril  como  prazo  final  para  a apuração.  No que se refere aos  Tribunais  de 
+Justiça,  este  conselho  utilizará  os dados  de execução  orçamentária  publicados  em atendimen - 
+to a resolução CNJ n. 102/2009.";"EDD = (EDD/ DD) * 100, onde:
+EDD: Montante empenhado de dotações para despesas discricionárias; e DD: Dotação atualizada para despesas discricionárias";Quanto  maior,  melhor
+IEP - Índice  de Execução  das Dotações  para  Projetos;Nacional;"Indica o grau de aproveitamento das dotações para despesas discricionárias, aprovadas no 
+orçamento e em créditos adicionais, classificadas como projetos. O percentual de execução 
+desses  recursos  no exercício  relaciona -se com  a capacidade  da administração  de executar  seus 
+investimentos e o acerto nas priorizações.";Mensal;"Este  índice  será  apurado  anualmente  pelo  Conselho  Nacional  de Justiça,  após  o encerramento 
+do exercício, por meio do SIAFI para o levantamento dos dados relativos aos tribunais inte - 
+grantes do Orçamento Geral da União. Estima -se o mês de abril como prazo final para a apu - 
+ração.  No que se refere  aos Tribunais  de Justiça,  este  conselho  utilizará  os dados  de execução 
+orçamentária publicados em atendimento a resolução CNJ n. 102/2009. Devido a eventuais 
+diferenças nos critérios utilizados pelos estados na identificação das ações orçamentárias 
+classificadas como projetos , poderá haver necessidade de consulta aos tribunais de justiça, 
+previamente a apuração do índice, para confirmação das dotações com essas características.";"IEP = (EDP/ DP) * 100, onde:
+EDP: Montante empenhado de dotações para projetos; e
+DP: Dotação atualizada para despesas com projetos.
+";Quanto  maior,  melhor
+"Índice  de Governança,  Gestão  e Infraestrutura  de Tecnologia  da Informação e Comunicação do Poder Judiciário - IGovTIC-JUD
+";Nacional;"Indica  o nível  de maturidade  atingido  por cada  órgão  através  do índice  de Governança  de 
+Tecnologia da Informação e Comunicação do Poder Judiciário (iGovTIC -JUD).";Mensal;Os dados  são obtidos  por meio  da aplicação  de questionário  aos órgãos  do Poder  Judiciário.;"Para o cálculo do iGovTIC-JUD, são considerados quatro níveis de consolidação:
+1. Nota do Item da pergunta (NI): Os itens das perguntas são valorados de 0 a 100 pontos, de
+acordo com o seu grau de importância;
+2. Nota Final da Pergunta (NFP): Cada pergunta do iGovTIC-JUD é composta por itens. O
+somatório dositens, de cada pergunta, resultará na Nota Final da Pergunta (NFP), que pode
+variar de 0 a 100 pontos;
+3. Nota Final do Tema (NFT): As perguntas são agrupadas por temas. Cada pergunta possui
+um peso definido, em porcentagem, de acordo com o seu grau de importância para o tema. O
+somatório dos pesos de todas as perguntas do tema resultará em 100%;
+4. Nota final do IGOVTIC-JUD: O resultado é obtido pela média aritmética das Notas Finais dos
+Temas (NFTs), conforme a fórmula: IGOVTIC-JUD = (NFT1 + NFT2 + ... + NFT8) / 8";Quanto  maior,  melhor

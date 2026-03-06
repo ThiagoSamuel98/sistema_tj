@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  indicador: one
+  ano: 1
+  valor: 1.5
+
+two:
+  indicador: two
+  ano: 1
+  valor: 1.5
